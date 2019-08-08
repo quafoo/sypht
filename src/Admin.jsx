@@ -10,10 +10,10 @@ export default class Admin extends React.Component {
   render() {
     return (
       <Row className={styles.container}>
-        <Col span="3" className={styles.navLeft}>
+        <Col span={3} className={styles.navLeft}>
           <NavLeft />
         </Col>
-        <Col span="21" className={styles.main}>
+        <Col span={21} className={styles.main}>
           <Header />
           <Row className={styles.content}>
             content
