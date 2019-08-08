@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import styles from './index.scss';
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class Header extends React.Component {
   componentWillMount() {
     this.setState({

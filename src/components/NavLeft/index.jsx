@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
+import { NavLink } from 'react-router-dom';
 import styles from './index.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -8,16 +9,22 @@ export default class NavLeft extends React.Component {
     return (
       <div>
         <div>
-          <i className={styles.logo} />
+          <NavLink to="/home">
+            <i className={styles.logo} />
+          </NavLink>
         </div>
         <Menu theme="dark">
           <Menu.Item key="predict">
-            <Icon type="upload" />
-            <span>Predict</span>
+            <NavLink to="/predict">
+              <Icon type="upload" />
+              <span>Predict</span>
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="documents">
-            <Icon type="file" />
-            <span>Documents</span>
+            <NavLink to="/documents">
+              <Icon type="file" />
+              <span>Documents</span>
+            </NavLink>
           </Menu.Item>
         </Menu>
       </div>
