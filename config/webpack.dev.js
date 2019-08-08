@@ -9,7 +9,7 @@ module.exports = merge(common, {
     overlay: true,
     contentBase: './dist',
     open: true,
-    port: 3000,
+    port: 5000,
     hot: true,
     hotOnly: true,
   },
