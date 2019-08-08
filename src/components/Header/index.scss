@@ -1,0 +1,10 @@
+.header {
+  height: calc(10vh);
+  line-height: 80px;
+  padding: 0 20px;
+  text-align: right;
+  background-color: #fff;
+  .user_name {
+    font-size: 20px;
+  }
+}

@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import NavLeft from './components/NavLeft';
+import Home from './pages/home';
 import styles from './style/common.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -16,7 +17,7 @@ export default class Admin extends React.Component {
         <Col span={21} className={styles.main}>
           <Header />
           <Row className={styles.content}>
-            content
+            <Home />
           </Row>
           <Footer />
         </Col>
