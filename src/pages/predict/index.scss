@@ -1,0 +1,8 @@
+.doc_uploader {
+  :global {
+    .ant-upload {
+      width: calc(100vh);
+      margin-left: 180px;
+    }
+  }
+}
