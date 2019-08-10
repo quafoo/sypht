@@ -3,21 +3,16 @@ import { Row, Col } from 'antd';
 import styles from './index.scss';
 
 export default class Header extends React.Component {
-  componentWillMount() {
-    this.setState({
-      userName: 'quafoo',
-    });
-  }
+  state = { userName: 'xxx' }
 
   render() {
-    const { userName } = this.state;
     return (
       <div>
         <Row className={styles.header}>
           <Col span={24}>
             <span className={styles.user_name}>
               Welcome,
-              {userName}
+              {this.state.userName}
             </span>
           </Col>
         </Row>
