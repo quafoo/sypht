@@ -1,21 +1,16 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+// import { Icon, Button } from 'antd';
 import styles from './index.scss';
 
 export default class Header extends React.Component {
-  state = { userName: 'xxx' }
+  state = { userName: 'xxxxx' }
 
   render() {
     return (
-      <div>
-        <Row className={styles.header}>
-          <Col span={24}>
-            <span className={styles.user_name}>
-              Welcome,
-              {this.state.userName}
-            </span>
-          </Col>
-        </Row>
+      <div className={styles.header}>
+        <botton className={styles.button}>
+          <span>{this.state.userName}</span>
+        </botton>
       </div>
     );
   }

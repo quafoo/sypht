@@ -21,15 +21,9 @@ function beforeUpload(file) {
 }
 
 export default class Predict extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = { loading: false }
 
-  handleChange(info) {
+  handleChange = (info) => {
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
@@ -44,15 +38,16 @@ export default class Predict extends React.Component {
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
-        <div className="ant-upload-text">Upload</div>
+        <div className="ant-upload-text">Upload a document</div>
       </div>
     );
     const { imageUrl } = this.state;
+
     return (
       <Upload
         name="document"
         listType="picture-card"
-        className={styles.doc_uploader}
+        className={styles.uploader}
         showUploadList={false}
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         beforeUpload={beforeUpload}

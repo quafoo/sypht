@@ -8,7 +8,7 @@ import {
 import App from './App';
 import Admin from './Admin';
 import Login from './pages/login';
-import Home from './pages/home';
+// import Home from './pages/home';
 import Predict from './pages/predict';
 import Documents from './pages/documents';
 import NotFound from './pages/notfound';
@@ -23,10 +23,10 @@ const Router = () => (
           render={() => (
             <Admin>
               <Switch>
-                <Route path="/home" component={Home} />
+                {/* <Route path="/home" component={Home} /> */}
                 <Route path="/predict" component={Predict} />
                 <Route path="/documents" component={Documents} />
-                <Redirect to="/home" />
+                <Redirect to="/documents" />
                 <Route component={NotFound} />
               </Switch>
             </Admin>
