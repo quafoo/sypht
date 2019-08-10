@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Upload, Icon, message } from 'antd';
 import styles from './index.scss';

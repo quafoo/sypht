@@ -41,8 +41,6 @@ export default class Documents extends React.Component {
       },
     ];
     const { dataSource } = this.state;
-    // eslint-disable-next-line no-console
-    console.log(dataSource);
 
     return (
       <div>

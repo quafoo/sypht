@@ -13,31 +13,28 @@ import Predict from './pages/predict';
 import Documents from './pages/documents';
 import NotFound from './pages/notfound';
 
-// eslint-disable-next-line react/prefer-stateless-function
-export default class Router extends React.Component {
-  render() {
-    return (
-      <HashRouter>
-        <App>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route
-              path="/"
-              render={() => (
-                <Admin>
-                  <Switch>
-                    <Route path="/home" component={Home} />
-                    <Route path="/predict" component={Predict} />
-                    <Route path="/documents" component={Documents} />
-                    <Redirect to="/home" />
-                    <Route component={NotFound} />
-                  </Switch>
-                </Admin>
-              )}
-            />
-          </Switch>
-        </App>
-      </HashRouter>
-    );
-  }
-}
+const Router = () => (
+  <HashRouter>
+    <App>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route
+          path="/"
+          render={() => (
+            <Admin>
+              <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/predict" component={Predict} />
+                <Route path="/documents" component={Documents} />
+                <Redirect to="/home" />
+                <Route component={NotFound} />
+              </Switch>
+            </Admin>
+          )}
+        />
+      </Switch>
+    </App>
+  </HashRouter>
+);
+
+export default Router;
