@@ -21,6 +21,7 @@ module.exports = merge(common, {
         loader: 'eslint-loader',
         options: {
           cache: true,
+          configFile: '.eslintrc.js',
         },
         enforce: 'pre',
       },
