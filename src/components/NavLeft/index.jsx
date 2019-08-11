@@ -11,16 +11,16 @@ const NavLeft = () => (
       </NavLink>
     </div>
     <Menu theme="dark">
-      <Menu.Item key="documents">
-        <NavLink to="/documents">
-          <Icon type="file" />
-          <span>Documents</span>
-        </NavLink>
-      </Menu.Item>
       <Menu.Item key="predict">
         <NavLink to="/predict">
           <Icon type="upload" />
           <span>Predict</span>
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item key="documents">
+        <NavLink to="/documents">
+          <Icon type="file" />
+          <span>Documents</span>
         </NavLink>
       </Menu.Item>
     </Menu>

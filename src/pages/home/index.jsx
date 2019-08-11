@@ -14,11 +14,11 @@ class Home extends React.PureComponent {
 
   render() {
     const columns = [
-      {
-        title: 'Client Name',
-        dataIndex: 'clientName',
-        key: 'clientName',
-      },
+      // {
+      //   title: 'Client Name',
+      //   dataIndex: 'clientName',
+      //   key: 'clientName',
+      // },
       {
         title: 'Field Set',
         dataIndex: 'fieldSet',
