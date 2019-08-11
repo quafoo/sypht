@@ -1,8 +1,48 @@
 .uploader {
   :global {
     .ant-upload{
-      width: 800px;
+      width: 600px;
       font-size: 22px;
     }
   }
+}
+.panel {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  width: 600px;
+  font-size: 22px;
+}
+
+.selector {
+  width: 250px;
+}
+.preview {
+  width: 600px;
+}
+.field {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+}
+.name {
+  flex-grow: 1;
+  font-weight: 300;
+}
+.confidence_low {
+  text-align: center;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  margin-left: 25px;
+  background: rgba(235, 66, 131, 0.5);
+}
+.confidence_high {
+  text-align: center;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  margin-left: 25px;
+  background: rgba(75,181,67,.5);
 }
