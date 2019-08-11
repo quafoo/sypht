@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Icon, Button } from 'antd';
 import styles from './index.scss';
 
 export default class Header extends React.Component {
@@ -8,9 +7,9 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className={styles.header}>
-        <botton className={styles.button}>
+        <div className={styles.button}>
           <span>{this.state.userName}</span>
-        </botton>
+        </div>
       </div>
     );
   }
