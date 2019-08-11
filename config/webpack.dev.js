@@ -18,6 +18,11 @@ module.exports = merge(common, {
         secure: false,
         changeOrigin: true,
       },
+      '/result/final': {
+        target: 'https://api.sypht.com',
+        secure: false,
+        changeOrigin: true,
+      },
     },
   },
   module: {

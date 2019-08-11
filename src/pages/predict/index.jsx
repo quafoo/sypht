@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
 import Uploader from './components/uploader';
 import Selector from './components/selector';
 import Preview from './components/preview';
 import styles from './index.scss';
 
-const Predict = () => (
+const Predict = props => (
   <div>
     <Row className={styles.panel}>
       <Col span={14}>
@@ -19,9 +20,13 @@ const Predict = () => (
       <Uploader />
     </Row>
     <Row>
-      <Preview />
+      { props.showPreview ? <Preview /> : '' }
     </Row>
   </div>
 );
 
-export default Predict;
+const mapStateToProps = state => ({
+  showPreview: state.getIn(['predict', 'showPreview']),
+});
+
+export default connect(mapStateToProps, null)(Predict);

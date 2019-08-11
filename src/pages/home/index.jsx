@@ -15,6 +15,11 @@ class Home extends React.PureComponent {
   render() {
     const columns = [
       {
+        title: 'Client Name',
+        dataIndex: 'clientName',
+        key: 'clientName',
+      },
+      {
         title: 'Field Set',
         dataIndex: 'fieldSet',
         key: 'fieldSet',
@@ -29,11 +34,11 @@ class Home extends React.PureComponent {
         dataIndex: 'clientSecret',
         key: 'clientSecret',
       },
-      {
-        title: 'Access Token',
-        dataIndex: 'accessToken',
-        key: 'accessToken',
-      },
+      // {
+      //   title: 'Access Token',
+      //   dataIndex: 'accessToken',
+      //   key: 'accessToken',
+      // },
     ];
 
     return (
@@ -57,7 +62,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateAccessToken(clientId, clientSecret) {
-    dispatch(actionCreators.getAccessToken(clientId, clientSecret));
+    dispatch(actionCreators.getAccessTokenAction(clientId, clientSecret));
   },
 });
 

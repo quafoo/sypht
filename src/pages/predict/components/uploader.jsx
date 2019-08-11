@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Upload, Icon, message } from 'antd';
 import styles from '../index.scss';
+import { actionCreators } from '../store';
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -25,14 +26,15 @@ class Uploader extends React.Component {
   state = { loading: false }
 
   handleChange = (info) => {
-    // eslint-disable-next-line no-console
-    console.log(info);
     if (info.file.status === 'uploading') {
+      this.props.changeShowPreview(false);
       this.setState({ loading: true });
       return;
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
+      this.props.changeShowPreview(true);
+      this.props.getResults(info.file.response.fileId, this.props.selectedAccessToken);
       getBase64(info.file.originFileObj, () => this.setState({ loading: false }));
     }
   }
@@ -44,7 +46,7 @@ class Uploader extends React.Component {
         <div className="ant-upload-text">Upload a document</div>
       </div>
     );
-    // const { imageUrl } = this.state;
+    const { selectedAccessToken, selectedFieldSet } = this.props;
 
     return (
       <Upload
@@ -55,18 +57,29 @@ class Uploader extends React.Component {
         beforeUpload={beforeUpload}
         action="https://api.sypht.com/fileupload"
         headers={{
-          Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1FVTBOalpGTmpNM1FqTXpOek00TURWR1JFTTJNREk1TXpFeFJUazVNVGxEUkRZMk1rRkJPUSJ9.eyJodHRwczovL2FwaS5zeXBodC5jb20vY29tcGFueUlkIjoiZTMyOGU3YjAtYTJkZC00ZGJlLTg1NjItMGQzNTA5OGVhNjhmIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5zeXBodC5jb20vIiwic3ViIjoidFhQNmVWZTRRT2NpRXQ1SzFUb1E5RVZHM25KcEdTRFhAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vYXBpLnN5cGh0LmNvbSIsImlhdCI6MTU2NTQzNzE5MCwiZXhwIjoxNTY1NTIzNTkwLCJhenAiOiJ0WFA2ZVZlNFFPY2lFdDVLMVRvUTlFVkczbkpwR1NEWCIsInNjb3BlIjoicmVzdWx0OmFsbCBmaWxldXBsb2FkOmFsbCBhZG1pbmlzdHJhdGlvbjpjb21wYW55IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.UWIQ_ZotnDcJWT-9dl9sahd73KK3s7K0vt-8yzKMTVIGmY4S3fbNe6jGwFpRM3Rjj9yMwqKOgZDg9siyvH5AHOjhXBPd9C62AJgjBVr9nPBxIaF7xlPDXNvZdsmEpinreCOJ-2KnI0qd80wyimYUsLnOtGocpibrTsDT6J6Kt_eqImgxu9F_CKEWdY-iZrlS_d0jAUh8aUvrd8Jz3TTVI8v--NWlKFvZJ87UFHnHlbrHxVp1SJL5Bt6i8l37LvvJF6eeaR1wXuWBjHhet-qjlfCM8gajspYhl2duzZOcqvjY93oLCa37D9uyQjXSoQmTqQUbbpI3pmPQHm--3yqxfg',
+          Authorization: `Bearer ${selectedAccessToken}`,
         }}
+        data={{ fieldSet: selectedFieldSet }}
         onChange={this.handleChange}
       >
         {uploadButton}
-        {/* {imageUrl ?
-        <img src={imageUrl} alt="document" style={{ width: '100%' }} /> : uploadButton} */}
       </Upload>
     );
   }
 }
 
-// const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  selectedAccessToken: state.getIn(['predict', 'selectedAccessToken']),
+  selectedFieldSet: state.getIn(['predict', 'selectedFieldSet']),
+});
 
-export default connect(null, null)(Uploader);
+const mapDispatchToProps = dispatch => ({
+  changeShowPreview(showPreview) {
+    dispatch(actionCreators.changeShowPreviewAction(showPreview));
+  },
+  getResults(fileId, selectedAccessToken) {
+    dispatch(actionCreators.getResultsAction(fileId, selectedAccessToken));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Uploader);

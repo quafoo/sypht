@@ -1,25 +1,16 @@
-/* eslint-disable no-console */
 import React from 'react';
+import { connect } from 'react-redux';
 import { Select } from 'antd';
 import styles from '../index.scss';
+import { actionCreators } from '../store';
 
 const { Option } = Select;
 
 class Selector extends React.PureComponent {
   onChange = (value) => {
-    console.log(`selected ${value}`);
-  }
-
-  onBlur = () => {
-    console.log('blur');
-  }
-
-  onFocus = () => {
-    console.log('focus');
-  }
-
-  onSearch = (val) => {
-    console.log('search:', val);
+    const { accessToken, fieldSet } = this.props.credentials
+      .find(item => item.clientName === value);
+    this.props.updateAccessTokenAndFieldSet(accessToken, fieldSet);
   }
 
   render() {
@@ -31,18 +22,27 @@ class Selector extends React.PureComponent {
         placeholder="Select a field set"
         optionFilterProp="children"
         onChange={this.onChange}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
-        onSearch={this.onSearch}
-        filterOption={(input, option) => option
-          .props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
+        {
+          this.props.credentials.map(
+            item => <Option key={item.key} value={item.clientName}>{item.clientName}</Option>,
+          )
+        }
       </Select>
     );
   }
 }
 
-export default Selector;
+const mapStateToProps = state => ({
+  credentials: state.getIn(['home', 'credentials']).toJS(),
+  selectedAccessToken: state.getIn(['predict', 'selectedAccessToken']),
+  selectedFieldSet: state.getIn(['predict', 'selectedFieldSet']),
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateAccessTokenAndFieldSet(accessToken, fieldSet) {
+    dispatch(actionCreators.updateAccessTokenAndFieldSetAction(accessToken, fieldSet));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Selector);
