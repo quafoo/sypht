@@ -8,10 +8,17 @@ module.exports = merge(common, {
   devServer: {
     overlay: true,
     contentBase: './dist',
+    port: 3000,
     open: true,
-    port: 5000,
     hot: true,
     hotOnly: true,
+    proxy: {
+      '/oauth/token': {
+        target: 'https://login.sypht.com',
+        secure: false,
+        changeOrigin: true,
+      },
+    },
   },
   module: {
     rules: [
