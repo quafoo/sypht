@@ -7,7 +7,7 @@ const updateAccessToken = (clientId, accessToken) => ({
   accessToken,
 });
 
-const getAccessToken = (clientId, clientSecret) => (dispatch) => {
+export const getAccessToken = (clientId, clientSecret) => (dispatch) => {
   axios.post('/oauth/token', {
     client_id: clientId,
     client_secret: clientSecret,
@@ -22,5 +22,3 @@ const getAccessToken = (clientId, clientSecret) => (dispatch) => {
       console.log(e);
     });
 };
-
-export { getAccessToken };
